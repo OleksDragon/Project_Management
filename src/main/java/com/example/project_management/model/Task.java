@@ -24,6 +24,9 @@ public class Task {
     @JoinColumn(name = "project_id")
     private Project project;
 
+    public Task() {
+    }
+
     public Task(int id, String name, String assignedTo, TaskStatus status, LocalDate dueDate, Project project) {
         this.id = id;
         this.name = name;
