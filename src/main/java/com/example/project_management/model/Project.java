@@ -99,6 +99,4 @@ public class Project {
     }
 }
 
-enum ProjectStatus {
-    ACTIVE, COMPLETED, ARCHIVED
-}
+
