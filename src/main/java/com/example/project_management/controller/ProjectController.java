@@ -50,7 +50,7 @@ public class ProjectController {
     }
 
     @PostMapping("/{id}/edit")
-    public String updateProject ( @PathVariable int id, @Valid @ModelAttribute Project project,
+    public String updateProject ( @PathVariable long id, @Valid @ModelAttribute Project project,
                                   BindingResult result){
         if (result.hasErrors()) {
             return "projects/edit";

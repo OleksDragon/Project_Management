@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 th:text="${project.name}">Деталі проекту</h1>
+<div>
+    <p><strong>Description:</strong> <span th:text="${project.description ?: 'There is no description'}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${project.status}"></span></p>
+    <p><strong>Start date:</strong> <span th:text="${project.startDate ?: 'Not specified'}"></span></p>
+    <p><strong>Completion date:</strong> <span th:text="${project.endDate ?: 'Not specified'}"></span></p>
+</div>
+<h2>Task</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Appointed</th>
+        <th>Status</th>
+        <th>Deadline</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${project.tasks}">
+        <td th:text="${task.name}"></td>
+        <td th:text="${task.assignedTo ?: 'Not assigned'}"></td>
+        <td th:text="${task.status}"></td>
+        <td th:text="${task.dueDate ?: 'Not specified'}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(project.tasks)}">
+        <td colspan="4">There are no tasks</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/projects}">Back to list</a>
+<a th:href="@{/projects/{id}/edit(id=${project.id})}">Edit the project</a>
+</body>
+</html>

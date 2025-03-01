@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Project</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Edit the project</h1>
+<form th:action="@{/projects/{id}/edit(id=${project.id})}" th:object="${project}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}"/>
+        <span class="error" th:errors="*{name}"></span>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}"></textarea>
+    </div>
+    <div>
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}">
+            <option th:each="status : ${T(com.example.project_management.model.ProjectStatus).values()}"
+                    th:value="${status}" th:text="${status}"
+                    th:selected="${status == project.status}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="startDate">Start date:</label>
+        <input type="date" id="startDate" th:field="*{startDate}"/>
+    </div>
+    <div>
+        <label for="endDate">Completion date:</label>
+        <input type="date" id="endDate" th:field="*{endDate}"/>
+    </div>
+    <button type="submit">Save</button>
+    <a th:href="@{/projects/{id}(id=${project.id})}">Cancel</a>
+</form>
+</body>
+</html>
