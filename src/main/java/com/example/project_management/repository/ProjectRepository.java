@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    // Поиск проектов по статусу
+    // Пошук проектів за статусом
     List<Project> findByStatus(ProjectStatus status);
 }

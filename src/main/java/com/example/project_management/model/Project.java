@@ -1,5 +1,6 @@
 package com.example.project_management.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,8 +15,8 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Назва не може бути порожньою!")
-    @Size(min = 2, max = 50, message = "Назва повинна бути від 2 до 50 символів")
+    @NotBlank(message = "The name cannot be empty!")
+    @Size(min = 2, max = 50, message = "The name must be between 2 and 50 characters")
     @Column(nullable = false, length = 50)
     private String name;
 
@@ -30,8 +31,8 @@ public class Project {
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Task> tasks = new ArrayList<>();
-
 
     public Project() {
     }

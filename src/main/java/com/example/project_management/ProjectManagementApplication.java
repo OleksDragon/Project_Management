@@ -10,5 +10,4 @@ public class ProjectManagementApplication {
 		SpringApplication.run(ProjectManagementApplication.class, args);
 		System.out.println("Server run!");
 	}
-
 }

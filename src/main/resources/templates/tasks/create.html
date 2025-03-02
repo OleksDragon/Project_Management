@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Task</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Create a new task</h1>
+<form th:action="@{/tasks/{projectId}(projectId=${projectId})}" th:object="${task}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required/>
+        <span class="error" th:errors="*{name}"></span>
+    </div>
+    <div>
+        <label for="assignedTo">Appointed:</label>
+        <input type="text" id="assignedTo" th:field="*{assignedTo}"/>
+    </div>
+    <div>
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}" required>
+            <option value="">Select a status</option>
+            <option th:each="status : ${T(com.example.project_management.model.TaskStatus).values()}"
+                    th:value="${status}" th:text="${status}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="dueDate">Deadline:</label>
+        <input type="date" id="dueDate" th:field="*{dueDate}"/>
+    </div>
+    <button type="submit" class="btn btn-secondary">Create</button>
+    <button type="button" class="btn btn-primary" th:onclick="|window.location.href='@{/projects/{projectId}(projectId=${projectId})}'|">Cancel</button>
+</form>
+</body>
+</html>
